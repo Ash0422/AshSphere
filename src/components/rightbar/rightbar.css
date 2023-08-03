@@ -31,3 +31,45 @@
     margin-bottom: 20px;
 }
 
+.rightBarTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.followingImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.rightInfo{
+    margin-bottom: 30px;
+}
+
+.infoItemList {
+    margin-bottom: 10px;
+}
+
+.infoItemCity {
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+}
+
+.infoItemKey{
+    font-weight: 300;
+}
+
+.following {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.followings {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

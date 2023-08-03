@@ -5,4 +5,5 @@ AshSphere provides users with a robust suite of communication tools and interact
 
 But AshSphere is more than just a platform. It's a catalyst for change, symbolized by the ash—a symbol of transformation and regeneration. Our mission is to revolutionize the way people connect, creating a sphere of influence that stretches across borders and cultures. Join us in the AshSphere, where your voice has the power to shape the world."
 
-Remember, this is just a suggestion. You'll want to tailor your app's description to accurately represent its features, target audience, and unique value proposition.
+
+# Coming Soon ...

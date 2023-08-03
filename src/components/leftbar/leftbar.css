@@ -11,10 +11,10 @@
     width: 5px;
 }
 ::-webkit-scrollbar-track {
-    background-color: azure;
+    background-color: #461111;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #D3D3D3;
+    background-color: #B3541E;
 }
 
 .leftBarWrap {
@@ -43,10 +43,12 @@
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
+    background-color: #B3541E;
 }
 
 .leftBarHr {
     margin: 20px 0;
+    
 }
 .leftBarFriendList {
     padding: 0;
