@@ -3,7 +3,7 @@ import {Users} from "../../SampleData"
 import Online from '../../components/online/online'
 
 export default function rightbar({profile}) {
-
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightBar = () => {
     return(
       <>
@@ -45,27 +45,27 @@ export default function rightbar({profile}) {
       <h4 className='rightBarTitle'>User Friends</h4>
       <div className="following">
         <div className="followings">
-          <img src="/assets/users/user2.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user2.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
         <div className="followings">
-          <img src="/assets/users/user4.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user4.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
         <div className="followings">
-          <img src="/assets/users/user6.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user6.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
         <div className="followings">
-          <img src="/assets/users/user8.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user8.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
         <div className="followings">
-          <img src="/assets/users/user9.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user9.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
         <div className="followings">
-          <img src="/assets/users/user10.jpg" alt="" className="followingImg" />
+          <img src={`${publicFolder}users/user10.jpg`} alt="" className="followingImg" />
           <span className="followerUsername">Brigitte Chibane</span>
         </div>
       </div>

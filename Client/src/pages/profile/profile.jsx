@@ -5,6 +5,7 @@ import Centerbar from "../../components/centerbar/feed"
 import Rightbar from "../../components/rightbar/rightbar"
 
 export default function profile() {
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <>
     <Menubar/>
@@ -13,8 +14,8 @@ export default function profile() {
     <div className="profileRight">
         <div className="topRightProfile">
             <div className="profileCoverCont">
-            <img className='coverImg' src="/assets/posts/post4.jpg" alt="" />
-            <img className='userImg' src="/assets/users/user1.jpg" alt="" />
+            <img className='coverImg' src={`${publicFolder}posts/post4.jpg`} alt="" />
+            <img className='userImg' src={`${publicFolder}users/user1.jpg`} alt="" />
             </div>
            <div className="userInfo">
             <h4 className='userInfoName'>Achraf Chibane</h4>

@@ -1,5 +1,6 @@
 import "./menubar.css"
 import {Search, Person, Chat, Notifications} from "@mui/icons-material"
+import {Link} from "react-router-dom"
 export default function menubar() {
   return (
     //  Menu Container
@@ -7,7 +8,9 @@ export default function menubar() {
 
       {/* Menu Bar Left */}
         <div className="menubarLeft">
+          <Link to="/" style={{textDecoration:"none"}}>
           <span className="logo">AshSphere</span>
+          </Link>
         </div>
         {/* Menu Bar Center */}
         <div className="menubarCenter">
