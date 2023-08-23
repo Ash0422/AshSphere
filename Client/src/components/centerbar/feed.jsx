@@ -1,52 +1,75 @@
-// import './feed.css'
-// import Share from '../share/share'
-// import Post from '../posts/posts'
-// import {PostS} from '../../SampleData'
+// import './feed.css';
+// import Share from '../share/share';
+// import Post from '../posts/posts';
+// import { useEffect, useState } from 'react';
+// import axios from "axios";
 
-// export default function feed() {
+// export default function Feed({ username }) {
+//   const [posts, setPosts] = useState([]);
+
+//   useEffect(() => {
+//     console.log("Username prop:", username); // Log the username prop
+//     const fetchPosts = async () => {
+//       try {
+//         const res = username 
+//           ? await axios.get(`/posts/profile/${username}`)
+//           : await axios.get("/posts/timeline/64e4f2157ba7cd77db0521a5");
+
+//         setPosts(res.data);
+//       } catch (error) {
+//         console.error("Error fetching posts:", error);
+//       }
+//     };
+
+//     fetchPosts();
+//   }, [username]);
+
 //   return (
 //     <div className='centerBar'>
 //       <div className="centerWrapp">
-//         <Share/>
-//         {Posts.map((p) => (
-
-//         <Post key={p.id} post={p}/>
+//         <Share />
+//         {posts.map((p) => (
+//           <Post key={p._id} post={p} username={username} />
 //         ))}
-        
 //       </div>
 //     </div>
-//   )
+//   );
 // }
 import './feed.css';
 import Share from '../share/share';
 import Post from '../posts/posts';
 import { useEffect, useState } from 'react';
-import axios from "axios"
+import axios from "axios";
 
+export default function Feed({ username }) {
+  const [posts, setPosts] = useState([]);
 
-export default function Feed() {
-  const [posts,setPosts] = useState([]);
-
-  useEffect(()=>{
+  useEffect(() => {
+    console.log("Username prop:", username); // Log the username prop
     const fetchPosts = async () => {
-      const res = await axios.get("posts/timeline/64d1405548e977fe8e081753");
+      try {
+        const res = username 
+          ? await axios.get(`/posts/profile/${username}`)
+          : await axios.get("/posts/timeline/64e4f2157ba7cd77db0521a5");
 
-
-      setPosts(res.data);
-
+        setPosts(res.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
     };
-    
+
     fetchPosts();
-  },[]);
+  }, [username]);
+
   return (
     <div className='centerBar'>
       <div className="centerWrapp">
-        <Share/>
+        <Share />
         {posts.map((p) => (
-          <Post key={p._id} post={p}/>
+          // Make sure to pass the username prop here
+          <Post key={p._id} post={p} username={username} />
         ))}
       </div>
     </div>
-  )
+  );
 }
-

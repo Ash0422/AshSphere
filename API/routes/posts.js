@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Post = require("../models/post"); 
 const User = require("../models/user"); // Import User model
 
+
 // create a new post
 router.post("/", async (req, res) => {
     const newPost = new Post(req.body);
@@ -90,7 +91,17 @@ router.get("/timeline/:userId", async (req, res) => {
         res.status(500).json(err);
     }
 });
-
+// get user's  posts
+router.get("/profile/:username", async (req, res) => {
+    try {
+        const user = await User.findOne({username:req.params.username});
+        const posts = await Post.find({userId:user._id});
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error("Error in timeline endpoint:", err);
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
 

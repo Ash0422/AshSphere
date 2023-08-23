@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './posts.css';
 import { MoreVert } from '@mui/icons-material';
 import axios from 'axios';
-import {format} from "timeago.js"
+import { format } from 'timeago.js';
+import { Link } from 'react-router-dom';
 
-export default function Posts({ post }) {
+export default function Posts({ post, username }) {
   const [likes, setLikes] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
@@ -13,7 +14,9 @@ export default function Posts({ post }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`users/${post.userId}`);
+        const res = await axios.get(`/users/${username}`);
+        console.log('Fetched User Data:', res.data);
+
         setUser(res.data);
       } catch (error) {
         console.error(error);
@@ -21,7 +24,7 @@ export default function Posts({ post }) {
     };
 
     fetchUser();
-  }, [post.userId]);
+  }, [username]);
 
   const likesHandler = () => {
     setLikes(isLiked ? likes - 1 : likes + 1);
@@ -30,29 +33,46 @@ export default function Posts({ post }) {
 
   return (
     <div className='posts'>
-      <div className="postsWrap">
-        <div className="postsTop">
-          <div className="topLeftPost">
-            <img className='ProfileImgPost' src={user.profilePicture || publicFolder+"profilePicture.jpg"} alt="" />
-            <span className="userNamePost">{user.username}</span>
-            <span className="postTime">{format(post.createdAt)}</span>
+      <div className='postsWrap'>
+        <div className='postsTop'>
+          <div className='topLeftPost'>
+            <Link to={`profile/${user.username}`}>
+              <img
+                className='ProfileImgPost'
+                src={user.profilePicture || publicFolder + 'profilePicture.jpg'}
+                alt=''
+              />
+            </Link>
+
+            <span className='userNamePost'>{user.username}</span>
+            <span className='postTime'>{format(post.createdAt)}</span>
           </div>
-          <div className="topRightPost">
+          <div className='topRightPost'>
             <MoreVert />
           </div>
         </div>
-        <div className="postsCenter">
-          <span className="TextPost">{post?.desc}</span>
-          <img className='imgPost' src={publicFolder + post.img} alt="" />
+        <div className='postsCenter'>
+          <span className='TextPost'>{post?.desc}</span>
+          <img className='imgPost' src={publicFolder + post.img} alt='' />
         </div>
-        <div className="postsBottom">
-          <div className="leftBottomPost">
-            <img className='likesIcon' src={`${publicFolder}like.png`} onClick={likesHandler} alt="" />
-            <img className='likesIcon' src={`${publicFolder}heart.png`} onClick={likesHandler} alt="" />
-            <span className="likesCount"> {likes} people liked this </span>
+        <div className='postsBottom'>
+          <div className='leftBottomPost'>
+            <img
+              className='likesIcon'
+              src={`${publicFolder}like.png`}
+              onClick={likesHandler}
+              alt=''
+            />
+            <img
+              className='likesIcon'
+              src={`${publicFolder}heart.png`}
+              onClick={likesHandler}
+              alt=''
+            />
+            <span className='likesCount'> {likes} people liked this </span>
           </div>
-          <div className="rightBottomPost">
-            <span className="commentsText">{post.comments} comments</span>
+          <div className='rightBottomPost'>
+            <span className='commentsText'>{post.comments} comments</span>
           </div>
         </div>
       </div>

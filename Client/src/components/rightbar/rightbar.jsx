@@ -2,7 +2,7 @@ import './rightbar.css'
 import {Users} from "../../SampleData"
 import Online from '../../components/online/online'
 
-export default function rightbar({profile}) {
+export default function rightBar({user}) {
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightBar = () => {
     return(
@@ -31,42 +31,49 @@ export default function rightbar({profile}) {
       <div className="rightInfo">
         <div className="infoItemList">
           <span className="infoItemCity">City:</span>
-          <span className="infoItemKey">Phoenix</span>
+          <span className="infoItemKey">{user.city}</span>
         </div>
         <div className="infoItemList">
           <span className="infoItemCity">From:</span>
-          <span className="infoItemKey">Algeria</span>
+          <span className="infoItemKey">{user.from}</span>
         </div>
         <div className="infoItemList">
           <span className="infoItemCity">Relationship:</span>
-          <span className="infoItemKey">Married</span>
+          <span className="infoItemKey">
+              {user.relationship === 1 ? "Single"
+              : user.relationship === 2 ? "Married"
+              : user.relationship === 3 ? "Divorced"
+              : "-"
+              }
+          </span>
+
         </div>
       </div>
       <h4 className='rightBarTitle'>User Friends</h4>
       <div className="following">
         <div className="followings">
           <img src={`${publicFolder}users/user2.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Haroun Ramoul</span>
         </div>
         <div className="followings">
           <img src={`${publicFolder}users/user4.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Sami Remili</span>
         </div>
         <div className="followings">
           <img src={`${publicFolder}users/user6.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Daniel Conditt</span>
         </div>
         <div className="followings">
           <img src={`${publicFolder}users/user8.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Mouhamed Chibane</span>
         </div>
         <div className="followings">
           <img src={`${publicFolder}users/user9.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Ali Smaala</span>
         </div>
         <div className="followings">
           <img src={`${publicFolder}users/user10.jpg`} alt="" className="followingImg" />
-          <span className="followerUsername">Brigitte Chibane</span>
+          <span className="followerUsername">Aziz Smaala</span>
         </div>
       </div>
       </>
@@ -76,7 +83,7 @@ export default function rightbar({profile}) {
   return (
     <div className='rightBar'>
       <div className="rightBarWrap">
-        {profile ? <ProfileRightBar/> : <HomeRightBar/>}
+        {user ? <ProfileRightBar/> : <HomeRightBar/>}
    
       </div>
     </div>

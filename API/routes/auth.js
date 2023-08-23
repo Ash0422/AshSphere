@@ -1,24 +1,4 @@
-// const router = require('express').Router();
-// const User = require('../models/User');
 
-// // Register
-// router.post("/register", async (req, res) => {
-//     const createUser = new User({
-//         username: req.body.username,
-//         email: req.body.email,
-//         password: req.body.password
-        
-//     })
-//     try{
-//         const user = await createUser.save();
-//         res.status(200).json(user);
-//     }catch(err){
-//         console.log(err);
-//     }
-
-// });
-
-// module.exports = router;
 const router = require('express').Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
@@ -51,25 +31,44 @@ router.post("/register", async (req, res) => {
 });
 
 // Login 
-router.post('/login', async (req, res)=>{
+// 
+router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({email:req.body.email});
+        const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            return res.status(404).json("User not found");
+            return res.status(404).json({ error: "User not found" });
         }
 
         const validPassword = await bcrypt.compare(req.body.password, user.password)
         if (!validPassword) {
-            return res.status(401).json("wrong password");
+            return res.status(401).json({ error: "Wrong password" });
         }
 
-        // Add a success response here if the user is found and password is correct
-        // For example: 
-        res.status(200).json("Logged in successfully");
-    } catch(err){
-        console.log(err)
+        // Send the user information upon successful login
+        res.status(200).json({
+            message: "Logged in successfully",
+            user: {
+                _id: user._id,
+                username: user.username,
+                email: user.email,
+                profilePicture: user.profilePicture,
+                coverPicture: user.coverPicture,
+                followers: user.followers,
+                following: user.following,
+                isAdmin: user.isAdmin,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+                city: user.city,
+                desc: user.desc,
+                from: user.from,
+                relationship: user.relationship,
+                // Add any other user properties you want to send
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: err.message });
     }
-   
 });
 
 

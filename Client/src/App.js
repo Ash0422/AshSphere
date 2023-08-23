@@ -7,22 +7,27 @@ import {
   Switch,
   Route
 } from "react-router-dom"
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import { Redirect } from "react-router-dom/cjs/react-router-dom";
 
 function App() {
+
+  const {user} = useContext(AuthContext)
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home/>
+          {user ? <Home/> : <Signup/>}
 
         </Route>
         <Route path="/login">
-          <Login/>
+          {user ? <Redirect to ="/"/> : <Login/>}
 
         </Route>
         <Route path="/signup">
-          <Signup/>
+        {user ? <Redirect to ="/"/> : <Signup/>}
 
         </Route>
         <Route path="/profile/:username">

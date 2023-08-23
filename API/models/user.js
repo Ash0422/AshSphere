@@ -1,59 +1,58 @@
 const mongoose = require("mongoose");
 
-
 const UserSchema = new mongoose.Schema({
     username: {
-        type: `String`,
+        type: "String",
         required: true,
         min: 4,
         max: 25,
         unique: true
     },
     email: {
-        type: `String`,
+        type: "String",
         required: true,
         max: 60,
         unique: true,
     },
     password: {
-        type: `String`,
+        type: "String",
         required: true,
         min: 10,
     },
     profilePicture: {
-        type: `String`,
+        type: "String",
         default: '',
     },
     coverPicture: {
-        type: `String`,
+        type: "String",
         default: '',
     },
     followers: {
-        type: `Array`,
+        type: "Array",
         default: [],
     },
     following: {
-        type: `Array`,
+        type: "Array",
         default: [],
     },
     isAdmin: {
-        type: `Boolean`,
+        type: "Boolean",
         default: false,
     },
     desc: {
-        type: `String`,
+        type: "String",
         max: 50
     },
     city: {
-        type: `String`,
+        type: "String",
         max: 50
     },
     from: {
-        type: `String`,
+        type: "String",
         max: 50
     },
     relationship: {
-        type: `Number`,
+        type: "Number",
         enum: [1, 2, 3, 4]
     },
 },
